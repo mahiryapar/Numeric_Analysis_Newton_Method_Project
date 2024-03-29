@@ -27,12 +27,12 @@ def bilgi_al():
         break
     while True:
         try:
-            p_0 = float(input("Başlangıç değer giriniz ->"))
+            p0 = float(input("P0 değerini giriniz ->"))
         except ValueError:
-            print("Lütfen gecerli bir değer giriniz!")
+            print("Lütfen gecerli aralık değerleri giriniz!")
             continue
         break
-    return fx ,error_level, p_0
+    return fx ,error_level, p0
 
 
 def newton_method(fx, error_level, p_0):
@@ -45,20 +45,18 @@ def newton_method(fx, error_level, p_0):
             print("Türev sıfıra yakınsadı. Kök bulunamadı.")
             break
         p_n = p_0 - (fx.subs(x, p_0) / derivative_value)
-        if(p_n < error_level):
+        if(abs(p_n-p_0) < error_level):
             return p_n
         p_0 = p_n
 
-    if current_iter < max_iter:
-        print(f"Kök bulundu: {p_n} (iterasyon sayısı: {current_iter})")
-    else:
-        print("Maksimum iterasyon sayısına ulaşıldı. Kök bulunamadı.")
 
 def main():
-    fx, error_level, p_0 = bilgi_al()
-    print(f"Error level :{error_level}")
+    fx, error_level, p0= bilgi_al()
+    print(f"Error level :{error_level}, p0 değeri:{p0}")
     print(turev(fx))
-    root = newton_method(fx, error_level, p_0)
+    root = newton_method(fx, error_level, p0)
+    print(root)
+
 
 if __name__ == "__main__":        #programın çalışmasını sağlıyor
     main()                       #moduler olarak çağrılırsa main çalışmasın
