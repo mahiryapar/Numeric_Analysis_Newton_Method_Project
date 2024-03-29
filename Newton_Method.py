@@ -1,11 +1,9 @@
 import math
-from sympy import symbols,sympify, diff
+from sympy import symbols,sympify, diff,E,oo,pi
 
 x = symbols("x")
 y = symbols("y")
-e = symbols("e")
-pi = math.pi
-inf = math.inf
+
 
 def turev(fx):
     fxt = diff(fx, x)
@@ -17,7 +15,7 @@ def bilgi_al():
     while True:
         fx = input("Newton Metodunu uygulamak istediğiniz fonksiyonu giriniz -> ")
         try:
-            fx = sympify(fx)
+            fx = sympify(fx, locals={"pi": pi, "oo": oo, "e": E})
         except:
             print("Fonksiyon girdisinde hata! Lütfen tekrar deneyiniz.")
             continue
@@ -46,8 +44,15 @@ def newton_method(fx, error_level, range_start_value, range_finish_value):
     p0 = float(range_start_value+range_finish_value)/2 # p0 baslangic değerimiz.
 
 
-fx, error_level, range_start_value, range_finish_value = bilgi_al()
-print(f"Error level :{error_level}, Aralık başlangıcı :{range_start_value}, Aralık bitişi :{range_finish_value}")
-print(turev(fx))
 
-newton_method(fx, error_level, range_start_value, range_finish_value)
+def main():
+    fx, error_level, range_start_value, range_finish_value = bilgi_al()
+    print(f"Error level :{error_level}, Aralık başlangıcı :{range_start_value}, Aralık bitişi :{range_finish_value}")
+    print(turev(fx))
+    newton_method(fx, error_level, range_start_value, range_finish_value)
+
+
+
+
+if __name__ == "__main__":        #programın çalışmasını sağlıyor
+    main()                       #moduler olarak çağrılırsa main çalışmasın
