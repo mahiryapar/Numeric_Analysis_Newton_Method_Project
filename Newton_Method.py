@@ -12,9 +12,7 @@ def turev(fx):
     return fxt
 
 def bilgi_al():
-    ctrl = True
-    while ctrl == True:
-        ctrl = False
+    while True:
         fx = input("Newton Metodunu uygulamak istediğiniz fonksiyonu giriniz -> ")
         try:
             fx = sympify(fx)
@@ -22,6 +20,5 @@ def bilgi_al():
             print("Fonksiyon girdisinde hata! Lütfen tekrar deneyiniz.")
             ctrl = True
             continue
-        ctrl = False
         return fx
 
