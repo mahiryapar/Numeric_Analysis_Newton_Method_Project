@@ -38,9 +38,10 @@ def bilgi_al():
 def newton_method(fx, error_level, p_0):
     current_iter = 0
     max_iter =100
+    fxt = turev(fx)
     while(current_iter < max_iter):
         current_iter +=1
-        derivative_value = diff(fx, p_0)
+        derivative_value = fxt.subs(x,p_0)
         if(derivative_value == 0):
             print("Türev sıfıra yakınsadı. Kök bulunamadı.")
             break
@@ -52,10 +53,8 @@ def newton_method(fx, error_level, p_0):
 
 def main():
     fx, error_level, p0= bilgi_al()
-    print(f"Error level :{error_level}, p0 değeri:{p0}")
-    print(turev(fx))
     root = newton_method(fx, error_level, p0)
-    print(root)
+    print(f"Girilen Bilgilere Göre Bulunan Kök: {root}")
 
 
 if __name__ == "__main__":        #programın çalışmasını sağlıyor
