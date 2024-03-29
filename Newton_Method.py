@@ -42,7 +42,6 @@ def newton_method(fx, error_level, p_0):
     while current_iter < max_iter :
         current_iter +=1
         derivative_value = fxt.subs(x,p_0)
-        print(f"Türev değeri :{derivative_value} ")
         if derivative_value == 0:
             print("Türev sıfıra yakınsadı. Kök bulunamadı.")
             return None, 0
