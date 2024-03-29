@@ -39,22 +39,25 @@ def newton_method(fx, error_level, p_0):
     current_iter = 0
     max_iter =100
     fxt = turev(fx)
-    while(current_iter < max_iter):
+    while current_iter < max_iter :
         current_iter +=1
         derivative_value = fxt.subs(x,p_0)
-        if(derivative_value == 0):
+        print(f"Türev değeri :{derivative_value} ")
+        if derivative_value == 0:
             print("Türev sıfıra yakınsadı. Kök bulunamadı.")
-            break
+            return None, 0
         p_n = p_0 - (fx.subs(x, p_0) / derivative_value)
-        if(abs(p_n-p_0) < error_level):
-            return p_n
+        if abs(p_n-p_0) < error_level:
+            return p_n, current_iter
         p_0 = p_n
 
 
 def main():
     fx, error_level, p0= bilgi_al()
-    root = newton_method(fx, error_level, p0)
-    print(f"Girilen Bilgilere Göre Bulunan Kök: {root}")
+    root, current_iter = newton_method(fx, error_level, p0)
+    if root:
+        print(f"Girilen Bilgilere Göre Bulunan Kök: {root}")
+        print(f"Kök {current_iter}. adımda bulunmuştur.")
 
 
 if __name__ == "__main__":        #programın çalışmasını sağlıyor
