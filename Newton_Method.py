@@ -1,19 +1,14 @@
 import math
-from sympy import symbols,sympify, diff,E,oo,pi
+from sympy import symbols,sympify, diff
 
 x = symbols("x")
 y = symbols("y")
-
-
-def turev(fx):
-    fxt = diff(fx, x)
-    return fxt
 
 def bilgi_al():
     while True:
         fx = input("Newton Metodunu uygulamak istediğiniz fonksiyonu giriniz -> ")
         try:
-            fx = sympify(fx, locals={"pi": math.pi, "oo": oo, "e": math.e})
+            fx = sympify(fx, locals={"pi": math.pi, "oo": math.inf, "e": math.e})
         except:
             print("Fonksiyon girdisinde hata! Lütfen tekrar deneyiniz.")
             continue
@@ -38,7 +33,7 @@ def bilgi_al():
 def newton_method(fx, error_level, p_0):
     current_iter = 0
     max_iter =100
-    fxt = turev(fx)
+    fxt = diff(fx, x)
     while current_iter < max_iter :
         current_iter +=1
         derivative_value = fxt.subs(x,p_0)
