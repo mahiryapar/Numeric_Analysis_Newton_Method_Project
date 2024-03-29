@@ -13,7 +13,7 @@ def bilgi_al():
     while True:
         fx = input("Newton Metodunu uygulamak istediğiniz fonksiyonu giriniz -> ")
         try:
-            fx = sympify(fx, locals={"pi": pi, "oo": oo, "e": E})
+            fx = sympify(fx, locals={"pi": math.pi, "oo": oo, "e": math.e})
         except:
             print("Fonksiyon girdisinde hata! Lütfen tekrar deneyiniz.")
             continue
